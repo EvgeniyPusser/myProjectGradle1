@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'war'
+    id 'org.gretty' version '3.0.3'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //implementation 'org.eclipse.jetty:jetty-server:12.0.0.beta0'
+    implementation 'org.eclipse.jetty:jetty-servlet:11.0.7'
+}
+
+task jettyRun(type: JavaExec) {
+    main = 'org.eclipse.jetty.start.Main'
+    classpath = sourceSets.main.runtimeClasspath
+    args = ['start']
+}
+
+
+gretty {
+    servletContainer = 'jetty11'
+}
+
